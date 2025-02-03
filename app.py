@@ -7,6 +7,7 @@ app = Flask(__name__)
 
 
 @app.route("/disk_space", methods=["GET"])
+@app.route("/", methods=["GET"])
 def disk_space():
     total, used, free = shutil.disk_usage("/")
     headers = {"Allow-Origin": "*"}
