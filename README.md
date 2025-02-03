@@ -46,3 +46,7 @@ Restart=always
 [Install]
 WantedBy=multi-user.target
 ```
+
+## See also
+
+- https://github.com/KarmaComputing/disk_usage_endpoint-rust
