@@ -10,7 +10,7 @@ app = Flask(__name__)
 @app.route("/", methods=["GET"])
 def disk_space():
     total, used, free = shutil.disk_usage("/")
-    headers = {"Allow-Origin": "*"}
+    headers = {"Access-Control-Allow-Origin": "*"}
     # Calculage % used:
     disk_percentage_used = int((used / total) * 100)
     return (
