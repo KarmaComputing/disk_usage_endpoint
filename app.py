@@ -9,7 +9,21 @@ app = Flask(__name__)
 @app.route("/disk_space", methods=["GET"])
 def disk_space():
     total, used, free = shutil.disk_usage("/")
-    return jsonify({"total": total, "used": used, "free": free})
+    headers = {"Allow-Origin": "*"}
+    # Calculage % used:
+    disk_percentage_used = int((used / total) * 100)
+    return (
+        jsonify(
+            {
+                "total": total,
+                "used": used,
+                "free": free,
+                "use": f"{disk_percentage_used}%",
+            }  # noqa: E501
+        ),
+        200,
+        headers,
+    )
 
 
 if __name__ == "__main__":

@@ -28,4 +28,21 @@ pip install -r requirements.txt
 python app.py
 ```
 
+# Systemd unit example
+`/etc/systemd/system/disk_usage_endpoint.service`
+```
+[Unit]
+Description=Disk Usage Endpoint
+After=network.target
 
+[Service]
+User=disk_usage_endpoint_user
+Group=disk_usage_endpoint_user
+WorkingDirectory=/opt/disk_usage_endpoint
+Environment="DISK_USAGE_ENDPOINT_PORT=5005"
+ExecStart=/opt/disk_usage_endpoint/venv/bin/python3 /opt/disk_usage_endpoint/app.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
